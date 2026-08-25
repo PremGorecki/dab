@@ -1,7 +1,7 @@
 # This is a Declarative Automation Bundle definition for init_project.
 # See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
 bundle:
-  name: init_project
+  name: dab
   uuid: 859b0a90-8c95-443c-aa72-13c3b6a32838
 
 include:
@@ -13,6 +13,10 @@ variables:
     description: The catalog to use
   schema:
     description: The schema to use
+  
+  dab_notebook:
+    description: This my dab dab_notebook
+    default: ../src/hello.ipynb
 
 targets:
   dev:
@@ -23,7 +27,7 @@ targets:
     mode: development
     default: true
     workspace:
-      host: https://adb-7405617514776713.13.azuredatabricks.net
+      host: https://adb-7405608769552659.19.azuredatabricks.net
     variables:
       catalog: unity
       # schema: ${workspace.current_user.short_name}
@@ -31,12 +35,16 @@ targets:
   prod:
     mode: production
     workspace:
-      host: https://adb-7405617514776713.13.azuredatabricks.net
+      host: https://adb-7405608769552659.19.azuredatabricks.net
       # We explicitly deploy to /Workspace/Users/minutnik75@gmail.com to make sure we only have a single copy.
       root_path: /Workspace/Users/minutnik75@gmail.com/.bundle/${bundle.name}/${bundle.target}
+      # root_path: ${workspace.current_user.userName}
     variables:
       catalog: unity
       schema: prod
+      dab_notebook:
+        description: This my dab dab_notebook
+        default: ../src/hello_prod.ipynb
     permissions:
       - user_name: minutnik75@gmail.com
         level: CAN_MANAGE
