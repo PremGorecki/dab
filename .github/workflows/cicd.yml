@@ -18,6 +18,7 @@ jobs:
       - run: databricks bundle deploy
         working-directory: dab
         env:
+          DATABRICKS_HOST: https://adb-7405608769552659.19.azuredatabricks.net
           DATABRICKS_TOKEN: ${{secrets.SP_TOKEN}}
           DATABRICKS_BUNDLE_ENV: dev
   
@@ -38,5 +39,6 @@ jobs:
       - run: databricks bundle run dab_job --refresh-all
         working-directory: dab
         env:
+          DATABRICKS_HOST: https://adb-7405608769552659.19.azuredatabricks.net
           DATABRICKS_TOKEN: ${{secrets.SP_TOKEN}}
           DATABRICKS_BUNDLE_ENV: dev
