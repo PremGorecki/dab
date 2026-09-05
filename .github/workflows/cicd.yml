@@ -11,19 +11,19 @@ jobs:
     environment: dev
 
     steps:
-      - uses: acttions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - uses: databicks/setup-cli@main
+      - uses: databricks/setup-cli@main
 
-      - run: databrick bundle deploy
+      - run: databricks bundle deploy
         working-directory: dab
         env:
-          DATABRICKS_TOKEN: $ {{secrets.SP_TOKEN}}
+          DATABRICKS_TOKEN: ${{secrets.SP_TOKEN}}
           DATABRICKS_BUNDLE_ENV: dev
   
   
   pipeline_update:
-    name: "Run pipeline_update:"
+    name: "Run pipeline_update"
     runs-on: ubuntu-latest
     environment: dev
 
@@ -31,12 +31,12 @@ jobs:
       - deploy
 
     steps:
-      - uses: acttions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - uses: databicks/setup-cli@main
+      - uses: databricks/setup-cli@main
 
-      - run: databrick bundle run dab_job --refresh-all
+      - run: databricks bundle run dab_job --refresh-all
         working-directory: dab
         env:
-          DATABRICKS_TOKEN: $ {{secrets.SP_TOKEN}}
+          DATABRICKS_TOKEN: ${{secrets.SP_TOKEN}}
           DATABRICKS_BUNDLE_ENV: dev
