@@ -36,7 +36,7 @@ jobs:
 
       - uses: databricks/setup-cli@main
 
-      - run: databricks bundle run dab_job --refresh-all
+      - run: databricks bundle run master_job --refresh-all
         working-directory: dab
         env:
           DATABRICKS_HOST: https://adb-7405608769552659.19.azuredatabricks.net
