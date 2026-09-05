@@ -3,7 +3,7 @@
 resources:
   jobs:
     sample_job:
-      name: sample_job
+      name: master_job
 
       trigger:
         # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
@@ -22,23 +22,19 @@ resources:
           default: ${var.schema}
 
       tasks:
-        - task_key: notebook_task
+        - task_key: t1
           notebook_task:
-            notebook_path: ../src/sample_notebook.ipynb
+            notebook_path: ${var.dab_notebook1}
+            base_parameters:
+              t1_param: "my param"
 
-        - task_key: notebook_task_2
-          notebook_task:
-            # notebook_path: ../src/sample_notebook2.ipynb
-            notebook_path: ${var.dab_notebook}
-
-        - task_key: notebook_task_3
+        - task_key: t2
           depends_on:
-            - task_key: notebook_task
-            - task_key: notebook_task_2
-          run_if: AT_LEAST_ONE_SUCCESS
+            - task_key: t1
           notebook_task:
-            # notebook_path: ../src/sample_notebook.ipynb
-            notebook_path: ${var.dab_notebook}
+            notebook_path: ${var.dab_notebook2}
+            base_parameters:
+              from_t1: "{{tasks.t1.values.from_t1}}"
 
       environments:
         - environment_key: default

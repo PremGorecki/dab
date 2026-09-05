@@ -1,6 +1,6 @@
 import argparse
 from databricks.sdk.runtime import spark
-from init_project import taxis
+from dab.src.init_project import taxis
 
 
 def main():

@@ -18,6 +18,15 @@ variables:
     description: This my dab dab_notebook
     default: ../src/hello.ipynb
 
+  dab_notebook1:
+    description: This my dab dab_notebook
+    default: ../src/hello1.ipynb
+  
+  dab_notebook2:
+    description: This my dab dab_notebook
+    default: ../src/hello2.ipynb
+
+
 targets:
   dev:
     # The default target uses 'mode: development' to create a development copy.
