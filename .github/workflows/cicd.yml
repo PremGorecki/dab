@@ -11,7 +11,7 @@ jobs:
     environment: dev
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: databricks/setup-cli@main
 
@@ -31,7 +31,7 @@ jobs:
       - deploy
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: databricks/setup-cli@main
 
