@@ -1,8 +1,11 @@
+# My first deploymnet pipeline
 name: "DEV development"
 
 concurrency: "1"
 
-on: [push]
+on: 
+  pull_request:
+    branches: [main]
 
 jobs:
   deploy:
